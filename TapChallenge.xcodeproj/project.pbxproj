@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BC4CBCAB1E291C2E009BFF79 /* TapChallange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapChallange.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC4CBCAB1E291C2E009BFF79 /* TapChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC4CBCAF1E291C2E009BFF79 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BC4CBCB11E291C2E009BFF79 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BC4CBCB21E291C2E009BFF79 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		BC4CBCAC1E291C2E009BFF79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BC4CBCAB1E291C2E009BFF79 /* TapChallange.app */,
+				BC4CBCAB1E291C2E009BFF79 /* TapChallenge.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,9 +82,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BC4CBCAA1E291C2E009BFF79 /* TapChallange */ = {
+		BC4CBCAA1E291C2E009BFF79 /* TapChallenge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC4CBCC21E291C2E009BFF79 /* Build configuration list for PBXNativeTarget "TapChallange" */;
+			buildConfigurationList = BC4CBCC21E291C2E009BFF79 /* Build configuration list for PBXNativeTarget "TapChallenge" */;
 			buildPhases = (
 				BC4CBCA71E291C2E009BFF79 /* Sources */,
 				BC4CBCA81E291C2E009BFF79 /* Frameworks */,
@@ -94,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = TapChallange;
+			name = TapChallenge;
 			productName = TapChallange;
-			productReference = BC4CBCAB1E291C2E009BFF79 /* TapChallange.app */;
+			productReference = BC4CBCAB1E291C2E009BFF79 /* TapChallenge.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -115,7 +115,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BC4CBCA61E291C2E009BFF79 /* Build configuration list for PBXProject "TapChallange" */;
+			buildConfigurationList = BC4CBCA61E291C2E009BFF79 /* Build configuration list for PBXProject "TapChallenge" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -128,7 +128,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BC4CBCAA1E291C2E009BFF79 /* TapChallange */,
+				BC4CBCAA1E291C2E009BFF79 /* TapChallenge */,
 			);
 		};
 /* End PBXProject section */
@@ -294,7 +294,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BC4CBCA61E291C2E009BFF79 /* Build configuration list for PBXProject "TapChallange" */ = {
+		BC4CBCA61E291C2E009BFF79 /* Build configuration list for PBXProject "TapChallenge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BC4CBCC01E291C2E009BFF79 /* Debug */,
@@ -303,7 +303,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BC4CBCC21E291C2E009BFF79 /* Build configuration list for PBXNativeTarget "TapChallange" */ = {
+		BC4CBCC21E291C2E009BFF79 /* Build configuration list for PBXNativeTarget "TapChallenge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BC4CBCC31E291C2E009BFF79 /* Debug */,

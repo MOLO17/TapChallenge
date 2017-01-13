@@ -8,7 +8,13 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+#define GameTimer 2
+
+@interface ViewController () {
+    int _tapsCount;
+    
+    NSTimer *_gameTimer;
+}
 
 @end
 
@@ -17,13 +23,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.tapsCountLabel.minimumScaleFactor = 0.5;
+    [self.tapsCountLabel setAdjustsFontSizeToFitWidth:true];
+    
+    [self initializeGame];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)initializeGame {
+    _tapsCount = 0;
+    
+    [self.tapsCountLabel setText:@"Tap to Play"];
 }
 
+#pragma mark - Actions
+
+-(IBAction)buttonPressed:(id)sender {
+    NSLog(@"buttonPressed: %i", _tapsCount);
+    
+    _gameTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimer target:self selector:@selector(timerTick) userInfo:nil repeats:true];
+    
+    _tapsCount++;
+    
+    [self.tapsCountLabel setText:[NSString stringWithFormat:@"%i", _tapsCount]];
+}
+
+-(void)timerTick {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
 
 @end

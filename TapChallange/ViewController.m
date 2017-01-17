@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 
-#define GameTimer 2
+#define GameTimer 1
+#define GameTime 3
 
 @interface ViewController () {
     int _tapsCount;
+    int _timeCount;
     
     NSTimer *_gameTimer;
 }
@@ -32,24 +34,56 @@
 
 -(void)initializeGame {
     _tapsCount = 0;
+    _timeCount = GameTime;
     
     [self.tapsCountLabel setText:@"Tap to Play"];
+    [self.timeLabel setText:[NSString stringWithFormat:@"Tap Challenge - %i sec", _timeCount]];
 }
 
 #pragma mark - Actions
 
 -(IBAction)buttonPressed:(id)sender {
+    // loggo in console il valore dei taps effettuati
     NSLog(@"buttonPressed: %i", _tapsCount);
     
-    _gameTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimer target:self selector:@selector(timerTick) userInfo:nil repeats:true];
+    // questo è un commento singleline
+    /*
+     questo è un commento multiline
+     */
     
+    // creo il timer solo se serve
+    if (_gameTimer == nil) {
+        _gameTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimer target:self selector:@selector(timerTick) userInfo:nil repeats:true];
+    }
+    
+    // incremento il mio taps counter
     _tapsCount++;
     
+    // aggiorno il valore della label
     [self.tapsCountLabel setText:[NSString stringWithFormat:@"%i", _tapsCount]];
 }
 
 -(void)timerTick {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    _timeCount--;
+    
+    [self.timeLabel setText:[NSString stringWithFormat:@"%i sec", _timeCount]];
+    
+    if (_timeCount == 0) {
+        [_gameTimer invalidate];
+        _gameTimer = nil;
+        
+        NSString *message = [NSString stringWithFormat:@"Hai fatto %i Taps!", _tapsCount];
+        UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"Game Over" message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self initializeGame];
+        }];
+        
+        [alertViewController addAction:okAction];
+        [self presentViewController:alertViewController animated:true completion:nil];
+    }
 }
 
 @end

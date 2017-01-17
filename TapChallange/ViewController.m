@@ -14,6 +14,9 @@
 #define GameTime 3
 #define FirstAppLaunch @"FirstAppLaunch"
 
+#define Defaults [NSUserDefaults standardUserDefaults]
+#define Results @"UserScore"
+
 @interface ViewController () {
     int _tapsCount;
     int _timeCount;
@@ -38,13 +41,13 @@
 -(void)viewDidAppear:(BOOL)animated {
     if ([self firstAppLaunch] == false) {
         // app appena installata
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:FirstAppLaunch];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [Defaults setBool:true forKey:FirstAppLaunch];
+        [Defaults synchronize];
     }
     else {
-        int risultato = [self risultato];
-        if (risultato > 0) {
-            [self mostraUltimoRisultato:risultato];
+        if ([self risultati].count > 0) {
+            NSNumber *value = [self risultati].lastObject;
+            [self mostraUltimoRisultato:value.intValue];
         }
     }
 }
@@ -113,8 +116,8 @@
 -(void)mostraUltimoRisultato:(int)risultato {
     // voglio che un UIAlertController mi mostri al primo avvio dell'app il precedente risultato del mio utente
     
-    NSString *message = [NSString stringWithFormat:@"Hai fatto %i Taps!", risultato];
-    UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"Game Over" message:message preferredStyle:UIAlertControllerStyleAlert];
+    NSString *message = [NSString stringWithFormat:@"Il tuo miglior risultato: %i Taps!", risultato];
+    UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"Wall of fame" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         // non faccio nulla?!
@@ -126,19 +129,55 @@
 
 #pragma mark - Persistenza
 
--(int)risultato {
+-(NSArray *)risultati {
     // ricavo i dati salvati dagli userDefaults
-    int value = [[NSUserDefaults standardUserDefaults] integerForKey:@"TapsCount"];
+    NSArray *array = [Defaults objectForKey:Results];
     
-    // loggo la variabile "value"
-    NSLog(@"VALORE DAGLI USER DEFAULTS -> %i", value);
+    if (array == nil) {
+        array = @[]; // inizializzo un array STATICO
+    }
     
-    return value;
+    // loggo la variabile "array"
+    NSLog(@"VALORE DAGLI USER DEFAULTS -> %@", array);
+    
+    return array;
 }
 
 -(void)salvaRisultato {
-    [[NSUserDefaults standardUserDefaults] setInteger:_tapsCount forKey:@"TapsCount"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSMutableArray *array = [[Defaults objectForKey:Results] mutableCopy];
+    if (array == nil) {
+        // OLD way
+        //array = [[NSMutableArray alloc] init].mutableCopy;
+        
+        // NEW fashion way
+        array = @[].mutableCopy;
+    }
+    
+    // OLD way
+//    NSNumber *number = [NSNumber numberWithInt:_tapsCount];
+    
+    // NEW fashion way
+    [array addObject:@(_tapsCount)];
+    
+    NSLog(@"mio array -> %@", array);
+    
+    NSArray *arrayToBeSaved = [array sortedArrayUsingComparator:^NSComparisonResult(NSNumber *obj1, NSNumber  *obj2) {
+        int value1 = obj1.intValue;
+        int value2 = obj2.intValue;
+        
+        if (value1 == value2) {
+            return NSOrderedSame;
+        }
+        
+        if (value1 < value2) {
+            return NSOrderedAscending;
+        }
+        
+        return NSOrderedDescending;
+    }];
+    
+    [Defaults setObject:arrayToBeSaved forKey:Results];
+    [Defaults synchronize];
 }
 
 -(bool)firstAppLaunch {

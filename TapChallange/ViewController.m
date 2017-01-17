@@ -8,8 +8,11 @@
 
 #import "ViewController.h"
 
+#import <Foundation/Foundation.h>
+
 #define GameTimer 1
 #define GameTime 3
+#define FirstAppLaunch @"FirstAppLaunch"
 
 @interface ViewController () {
     int _tapsCount;
@@ -30,6 +33,20 @@
     [self.tapsCountLabel setAdjustsFontSizeToFitWidth:true];
     
     [self initializeGame];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    if ([self firstAppLaunch] == false) {
+        // app appena installata
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:FirstAppLaunch];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else {
+        int risultato = [self risultato];
+        if (risultato > 0) {
+            [self mostraUltimoRisultato:risultato];
+        }
+    }
 }
 
 -(void)initializeGame {
@@ -70,6 +87,7 @@
     
     [self.timeLabel setText:[NSString stringWithFormat:@"%i sec", _timeCount]];
     
+    // game over
     if (_timeCount == 0) {
         [_gameTimer invalidate];
         _gameTimer = nil;
@@ -78,12 +96,53 @@
         UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"Game Over" message:message preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // salvo i dati utente
+            [self salvaRisultato];
+            
+            // inizializzo tutte le variabili di gioco al loro valore iniziale
             [self initializeGame];
         }];
         
         [alertViewController addAction:okAction];
         [self presentViewController:alertViewController animated:true completion:nil];
     }
+}
+
+#pragma mark - UI
+
+-(void)mostraUltimoRisultato:(int)risultato {
+    // voglio che un UIAlertController mi mostri al primo avvio dell'app il precedente risultato del mio utente
+    
+    NSString *message = [NSString stringWithFormat:@"Hai fatto %i Taps!", risultato];
+    UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"Game Over" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // non faccio nulla?!
+    }];
+    
+    [alertViewController addAction:okAction];
+    [self presentViewController:alertViewController animated:true completion:nil];
+}
+
+#pragma mark - Persistenza
+
+-(int)risultato {
+    // ricavo i dati salvati dagli userDefaults
+    int value = [[NSUserDefaults standardUserDefaults] integerForKey:@"TapsCount"];
+    
+    // loggo la variabile "value"
+    NSLog(@"VALORE DAGLI USER DEFAULTS -> %i", value);
+    
+    return value;
+}
+
+-(void)salvaRisultato {
+    [[NSUserDefaults standardUserDefaults] setInteger:_tapsCount forKey:@"TapsCount"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(bool)firstAppLaunch {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:FirstAppLaunch];
 }
 
 @end

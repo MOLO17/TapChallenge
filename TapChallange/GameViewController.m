@@ -49,6 +49,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    /*
     if ([self firstAppLaunch] == false) {
         // app appena installata
         [Defaults setBool:true forKey:FirstAppLaunch];
@@ -59,7 +60,13 @@
             NSNumber *value = [self risultati].lastObject;
             [self mostraUltimoRisultato:value.intValue];
         }
-    }
+    }*/
+    
+    [self resumeGame];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [self pauseGame];
 }
 
 -(void)initializeGame {
@@ -68,6 +75,21 @@
     
     [self.tapsCountLabel setText:@"Tap to Play"];
     [self.timeLabel setText:[NSString stringWithFormat:@"Ti restano %i sec", _timeCount]];
+}
+
+#pragma mark - Play / Pause game
+
+-(void)pauseGame {
+    if (_gameTimer != nil) {
+        [_gameTimer invalidate];
+        _gameTimer = nil;
+    }
+}
+
+-(void)resumeGame {
+    if (_timeCount != 0 && _tapsCount > 0) {
+        _gameTimer = [NSTimer scheduledTimerWithTimeInterval:GameTimer target:self selector:@selector(timerTick) userInfo:nil repeats:true];
+    }
 }
 
 #pragma mark - Actions

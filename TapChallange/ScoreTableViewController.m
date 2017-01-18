@@ -29,6 +29,8 @@
     
     self.scoresArray = array;
     
+    
+    
     // avviso il GameVC che ho terminato la lettura dei dati
     [self.delegate scoreTableViewDidFetchResults];
 }

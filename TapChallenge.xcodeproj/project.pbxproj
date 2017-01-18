@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		BC4CBCB01E291C2E009BFF79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4CBCAF1E291C2E009BFF79 /* main.m */; };
 		BC4CBCB31E291C2E009BFF79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4CBCB21E291C2E009BFF79 /* AppDelegate.m */; };
-		BC4CBCB61E291C2E009BFF79 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4CBCB51E291C2E009BFF79 /* ViewController.m */; };
+		BC4CBCB61E291C2E009BFF79 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4CBCB51E291C2E009BFF79 /* GameViewController.m */; };
 		BC4CBCB91E291C2E009BFF79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4CBCB71E291C2E009BFF79 /* Main.storyboard */; };
 		BC4CBCBB1E291C2E009BFF79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4CBCBA1E291C2E009BFF79 /* Assets.xcassets */; };
 		BC4CBCBE1E291C2E009BFF79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4CBCBC1E291C2E009BFF79 /* LaunchScreen.storyboard */; };
+		BCCBC3991E2FB1D5009F55E7 /* ScoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCBC3981E2FB1D5009F55E7 /* ScoreTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +21,14 @@
 		BC4CBCAF1E291C2E009BFF79 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BC4CBCB11E291C2E009BFF79 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BC4CBCB21E291C2E009BFF79 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BC4CBCB41E291C2E009BFF79 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BC4CBCB51E291C2E009BFF79 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BC4CBCB41E291C2E009BFF79 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		BC4CBCB51E291C2E009BFF79 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		BC4CBCB81E291C2E009BFF79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC4CBCBA1E291C2E009BFF79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC4CBCBD1E291C2E009BFF79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC4CBCBF1E291C2E009BFF79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCCBC3971E2FB1D5009F55E7 /* ScoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTableViewController.h; sourceTree = "<group>"; };
+		BCCBC3981E2FB1D5009F55E7 /* ScoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +63,10 @@
 			children = (
 				BC4CBCB11E291C2E009BFF79 /* AppDelegate.h */,
 				BC4CBCB21E291C2E009BFF79 /* AppDelegate.m */,
-				BC4CBCB41E291C2E009BFF79 /* ViewController.h */,
-				BC4CBCB51E291C2E009BFF79 /* ViewController.m */,
+				BC4CBCB41E291C2E009BFF79 /* GameViewController.h */,
+				BC4CBCB51E291C2E009BFF79 /* GameViewController.m */,
+				BCCBC3971E2FB1D5009F55E7 /* ScoreTableViewController.h */,
+				BCCBC3981E2FB1D5009F55E7 /* ScoreTableViewController.m */,
 				BC4CBCB71E291C2E009BFF79 /* Main.storyboard */,
 				BC4CBCBA1E291C2E009BFF79 /* Assets.xcassets */,
 				BC4CBCBC1E291C2E009BFF79 /* LaunchScreen.storyboard */,
@@ -151,7 +156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC4CBCB61E291C2E009BFF79 /* ViewController.m in Sources */,
+				BCCBC3991E2FB1D5009F55E7 /* ScoreTableViewController.m in Sources */,
+				BC4CBCB61E291C2E009BFF79 /* GameViewController.m in Sources */,
 				BC4CBCB31E291C2E009BFF79 /* AppDelegate.m in Sources */,
 				BC4CBCB01E291C2E009BFF79 /* main.m in Sources */,
 			);
@@ -310,6 +316,7 @@
 				BC4CBCC41E291C2E009BFF79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

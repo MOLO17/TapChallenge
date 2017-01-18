@@ -6,7 +6,8 @@
 //  Copyright © 2017 MOLO17 Srl. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "GameViewController.h"
+#import "ScoreTableViewController.h"
 
 #import <Foundation/Foundation.h>
 
@@ -17,7 +18,7 @@
 #define Defaults [NSUserDefaults standardUserDefaults]
 #define Results @"UserScore"
 
-@interface ViewController () {
+@interface GameViewController () {
     int _tapsCount;
     int _timeCount;
     
@@ -26,7 +27,7 @@
 
 @end
 
-@implementation ViewController
+@implementation GameViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +37,15 @@
     [self.tapsCountLabel setAdjustsFontSizeToFitWidth:true];
     
     [self initializeGame];
+    
+    // Setto il navigation bar title
+    self.title = @"Tap Challenge";
+    
+    // creo un pulsante che andrò a mettere dentro la NavigationBar
+    UIBarButtonItem *scoreButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(scoreButtonPressed)];
+    
+    // imposto il pulsante come elemento alla DX della mia navigationBar
+    self.navigationItem.rightBarButtonItem = scoreButtonItem;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -57,10 +67,27 @@
     _timeCount = GameTime;
     
     [self.tapsCountLabel setText:@"Tap to Play"];
-    [self.timeLabel setText:[NSString stringWithFormat:@"Tap Challenge - %i sec", _timeCount]];
+    [self.timeLabel setText:[NSString stringWithFormat:@"Ti restano %i sec", _timeCount]];
 }
 
 #pragma mark - Actions
+
+-(void)scoreButtonPressed {
+    /*
+    // es. creazione di un ViewController da codice
+    UIViewController *viewController = [[UIViewController alloc] init];
+    // setto il titolo
+    viewController.title = @"nuovo";
+    // personalizzo il colore dello sfondo
+    viewController.view.backgroundColor = [UIColor redColor];
+     */
+    
+    // prendo dalla storyboard il mio VC con storyBoardID "ScoreTableViewController"
+    ScoreTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ScoreTableViewController"];
+    
+    // pusho all'interno dello stack del mio navigationController un nuovo ViewController
+    [self.navigationController pushViewController:tableViewController animated:true];
+}
 
 -(IBAction)tapGestureRecognizerDidRecognizeTap:(id)sender {
     // loggo in console il valore dei taps effettuati

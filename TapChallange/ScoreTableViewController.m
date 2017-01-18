@@ -22,6 +22,20 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // richiamo il metodo del mio Delegate
+    NSArray *array = [self.delegate scoreTableViewFetchResults];
+    NSLog(@"%@", array);
+    
+    self.scoresArray = array;
+    
+    // avviso il GameVC che ho terminato la lettura dei dati
+    [self.delegate scoreTableViewDidFetchResults];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    // forzo il refresh dei dati all'interno della TableView
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,17 +50,21 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.scoresArray.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ScoreTableViewCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    NSString *text = [NSString stringWithFormat:@"Row %li - score: %@", (long)indexPath.row, self.scoresArray[indexPath.row]];
+    [cell.textLabel setText:text];
+    
+    // gestisco un accessory type
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
-}*/
+}
 
 /*
 // Override to support conditional editing of the table view.

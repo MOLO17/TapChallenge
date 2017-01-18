@@ -85,6 +85,13 @@
     // prendo dalla storyboard il mio VC con storyBoardID "ScoreTableViewController"
     ScoreTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ScoreTableViewController"];
     
+    // prendo i risultati del mio utente e li passo allo scoreVC
+//    NSArray *resultsArray = [self risultati];
+//    [tableViewController setScoresArray:resultsArray];
+    
+    // instauro il collegamento tra GameVC e ScoreVC attraverso il Delegate
+    tableViewController.delegate = self;
+    
     // pusho all'interno dello stack del mio navigationController un nuovo ViewController
     [self.navigationController pushViewController:tableViewController animated:true];
 }
@@ -213,6 +220,16 @@
 
 -(bool)firstAppLaunch {
     return [[NSUserDefaults standardUserDefaults] boolForKey:FirstAppLaunch];
+}
+
+#pragma mark - ScoreTableViewDelegate
+
+-(NSArray *)scoreTableViewFetchResults {
+    return [self risultati];
+}
+
+-(void)scoreTableViewDidFetchResults {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 @end

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameViewController : UIViewController
+#import "ScoreTableViewController.h"
+
+@interface GameViewController : UIViewController <ScoreTableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *tapsCountLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;

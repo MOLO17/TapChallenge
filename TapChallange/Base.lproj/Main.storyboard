@@ -45,6 +45,10 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2fz-Sv-5iH" appends="YES" id="Tzi-QY-fgq"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="tapsCountLabel" destination="1ek-Jd-V0l" id="XLG-3m-17l"/>
@@ -52,8 +56,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2fz-Sv-5iH"/>
             </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="100.29985007496252"/>
+            <point key="canvasLocation" x="-207" y="60"/>
         </scene>
     </scenes>
 </document>
